@@ -26,7 +26,7 @@ images/
   --> thank_you.png            # After a user submits a review, thank you image appears.
 ```
 
-![alt text]("examples and images/image.png")
+![Homepage Screenshot](examples_and_images/homepage.png "Homepage Screenshot")
 
 ---
 
