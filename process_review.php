@@ -2,14 +2,14 @@
 require 'database_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $mid  = (int)$_POST['movie_id'];
+  $movie_id  = (int)$_POST['movie_id'];
   $rate = (int)$_POST['rating'];
   $text = $conn->real_escape_string($_POST['review']);
 
-  // Insert into reviews table
+  // insert into reviews table
   $conn->query("
     INSERT INTO reviews (movie_id, rating, review)
-    VALUES ($mid, $rate, '$text')
+    VALUES ($movie_id, $rate, '$text')
   ");
 }
 ?>
@@ -52,11 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- main content -->
   <main class="content">
     <section class="featured-section">
-      <!-- reuse .about-text as a card for the message -->
+      <!-- reuse about-text as a card for the message -->
       <div class="about-text">
         <p>Your review has been added.</p>
         <p>
-          <a href="movie.php?id=<?php echo htmlentities($mid); ?>">
+          <a href="movie.php?id=<?php echo htmlentities($movie_id); ?>">
             Back to Movie Details
           </a>
         </p>

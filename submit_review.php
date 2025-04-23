@@ -14,12 +14,11 @@ $list = $conn->query("SELECT id, title FROM movies ORDER BY title");
   <title>Write a Review</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- jetbrains mono font -->
+  <!-- JetBrains Mono font -->
   <link 
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" 
     rel="stylesheet">
-
-  <!-- styles -->
+  <!-- styling -->
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/review.css">
 </head>
@@ -61,20 +60,20 @@ $list = $conn->query("SELECT id, title FROM movies ORDER BY title");
           <?php endwhile; ?>
         </select>
 
-        <!-- rating -->
+        <!-- Rating selector -->
         <label for="rating">Rating (1–5):</label>
         <select name="rating" id="rating" required>
-          <option value="">--</option>
-          <?php for ($i=1; $i<=5; $i++): ?>
+          <option value="">-- choose rating --</option>
+          <?php for ($i = 1; $i <= 5; $i++): ?>
             <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
           <?php endfor; ?>
         </select>
 
-        <!-- review text -->
+        <!-- Review text -->
         <label for="review">Your Review:</label>
         <textarea name="review" id="review" rows="5" required></textarea>
 
-        <!-- submit button -->
+        <!-- Submit -->
         <input type="submit" value="Submit Review">
       </form>
     </section>
@@ -84,6 +83,5 @@ $list = $conn->query("SELECT id, title FROM movies ORDER BY title");
   <footer class="site-footer">
     <p>© 2025 TrustHub Movie Reviews | Harry Newman</p>
   </footer>
-
 </body>
 </html>

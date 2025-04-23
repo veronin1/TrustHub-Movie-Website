@@ -1,27 +1,31 @@
 <?php
+// Movie details and its reviews 
 require 'database_connect.php';
+
+// get & cast the ID from the URL
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// geth movie info
-$stmt = $conn->prepare("SELECT title, year FROM movies WHERE id = ?");
-$stmt->bind_param('i', $id);
-$stmt->execute();
-$stmt->bind_result($title, $year);
-if (!$stmt->fetch()) {
-  die('Movie not found.');
-}
-$stmt->close();
-
-// get this movie’s reviews
-$rq = $conn->prepare("
-  SELECT rating, review 
-  FROM reviews 
-  WHERE movie_id = ? 
-  ORDER BY created_at DESC
+// get the movie’s title & year in one flat query
+$mvRes = $conn->query("
+  SELECT title, year
+  FROM movies
+  WHERE id = $id
 ");
-$rq->bind_param('i', $id);
-$rq->execute();
-$rq->bind_result($rating, $review);
+if (!$mvRes || $mvRes->num_rows === 0) {
+    die('Movie not found.');
+}
+$mv = $mvRes->fetch_assoc();
+$title = $mv['title'];
+$year  = $mv['year'];
+
+// get  all its reviews, newest first, in one query
+$revRes = $conn->query("
+  SELECT rating, review
+  FROM reviews
+  WHERE movie_id = $id
+  ORDER BY id DESC
+");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +38,7 @@ $rq->bind_result($rating, $review);
   <link 
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" 
     rel="stylesheet">
-  <!-- global + homepage CSS -->
+  <!-- styling -->
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/homepage.css">
 </head>
@@ -65,20 +69,20 @@ $rq->bind_result($rating, $review);
     <section class="featured-section">
       <h4>Reviews</h4>
 
-      <?php $has = false; ?>
-      <?php while ($rq->fetch()): $has = true; ?>
-        <!-- each review in text card -->
-        <div class="about-text">
-          <p><strong>Rating:</strong> <?php echo $rating; ?>/5</p>
-          <p><?php echo nl2br(htmlspecialchars($review)); ?></p>
-        </div>
-      <?php endwhile; ?>
-
-      <?php if (!$has): ?>
+      <?php if ($revRes->num_rows): ?>
+        <?php while ($r = $revRes->fetch_assoc()): ?>
+          <!-- each review in a text card -->
+          <div class="about-text">
+            <p><strong>Rating:</strong> <?php echo $r['rating']; ?>/5</p>
+            <p><?php echo nl2br(htmlspecialchars($r['review'])); ?></p>
+          </div>
+        <?php endwhile; ?>
+      <?php else: ?>
         <div class="about-text">
           <p>No reviews. <a href="submit_review.php?id=<?php echo $id; ?>">Write a Review!</a></p>
         </div>
       <?php endif; ?>
+
     </section>
   </main>
 
@@ -89,4 +93,3 @@ $rq->bind_result($rating, $review);
 
 </body>
 </html>
-<?php $rq->close(); ?>

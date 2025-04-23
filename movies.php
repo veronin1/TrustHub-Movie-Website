@@ -1,5 +1,5 @@
 <?php
-// movies.php — List all movies
+// movies.php — list all movies
 require 'database_connect.php';
 
 // gets list of all movies
@@ -17,13 +17,13 @@ $res = $conn->query("SELECT id, title, year FROM movies ORDER BY title");
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" 
     rel="stylesheet">
 
-  <!-- shared + movies CSS -->
+  <!-- styling -->
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/movies.css">
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- navbar -->
   <nav class="navbar">
     <div class="logo">
       <a href="index.php"><img src="images/logo.jpg" alt="TrustHub Logo"></a>
@@ -38,12 +38,12 @@ $res = $conn->query("SELECT id, title, year FROM movies ORDER BY title");
     </div>
   </nav>
 
-  <!-- PAGE HEADER -->
+  <!-- page header -->
   <header class="page-header">
     <h2>All Movies</h2>
   </header>
 
-  <!-- MOVIES GRID -->
+  <!-- movies grid -->
   <main class="content">
     <section class="movie-section">
       <div class="movie-grid">
@@ -61,7 +61,7 @@ $res = $conn->query("SELECT id, title, year FROM movies ORDER BY title");
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- footer-->
   <footer class="site-footer">
     <p>© 2025 TrustHub Movie Reviews | Harry Newman</p>
   </footer>
