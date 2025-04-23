@@ -3,7 +3,7 @@
 require 'database_connect.php';
 
 // gets list of all movies
-$res = $conn->query("SELECT id, title, year FROM movies ORDER BY title");
+$moviesResult = $conn->query("SELECT id, title, year FROM movies ORDER BY title");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,12 +47,12 @@ $res = $conn->query("SELECT id, title, year FROM movies ORDER BY title");
   <main class="content">
     <section class="movie-section">
       <div class="movie-grid">
-        <?php while ($m = $res->fetch_assoc()): ?>
+        <?php while ($movie = $moviesResult->fetch_assoc()): ?>
           <!-- loop through each movie record -->
           <div class="movie-card">
-            <h3><?php echo htmlspecialchars($m['title']); ?></h3>
-            <p class="year">(<?php echo $m['year']; ?>)</p>
-            <a href="movie.php?id=<?php echo $m['id']; ?>" class="details-link">
+            <h3><?php echo htmlspecialchars($movie['title']); ?></h3>
+            <p class="year">(<?php echo $movie['year']; ?>)</p>
+            <a href="movie.php?id=<?php echo $movie['id']; ?>" class="details-link">
               View Details
             </a>
           </div>

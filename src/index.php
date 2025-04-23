@@ -3,7 +3,7 @@
 require 'database_connect.php';
 
 // gets first 12 movies for featured movies section
-$res = $conn->query("SELECT id, title, year FROM movies LIMIT 12");
+$featuredMoviesResult = $conn->query("SELECT id, title, year FROM movies LIMIT 12");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,13 +53,13 @@ $res = $conn->query("SELECT id, title, year FROM movies LIMIT 12");
   <section class="featured-section">
     <h4>Featured Movies</h4>
     <div class="movie-grid">
-    <?php while ($m = $res->fetch_assoc()): ?>
+    <?php while ($movie = $featuredMoviesResult->fetch_assoc()): ?>
         <!-- loop through each movie record from the database -->
-        <!-- $m holds the current movies data as an  array -->
+        <!-- $movie holds the current movie’s data as an array -->
         <div class="movie-card">
-          <h5><?php echo htmlspecialchars($m['title']); ?></h5>
-          <p class="year">(<?php echo $m['year']; ?>)</p>
-          <a href="movie.php?id=<?php echo $m['id']; ?>" class="details-link">View Details</a>
+          <h5><?php echo htmlspecialchars($movie['title']); ?></h5>
+          <p class="year">(<?php echo $movie['year']; ?>)</p>
+          <a href="movie.php?id=<?php echo $movie['id']; ?>" class="details-link">View Details</a>
         </div>
       <?php endwhile; ?>
     </div>

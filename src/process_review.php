@@ -2,14 +2,14 @@
 require 'database_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $movie_id  = (int)$_POST['movie_id'];
-  $rate = (int)$_POST['rating'];
-  $text = $conn->real_escape_string($_POST['review']);
+  $submittedMovieId   = (int) $_POST['movie_id'];
+  $submittedRating    = (int) $_POST['rating'];
+  $submittedReviewText = $conn->real_escape_string($_POST['review']);
 
   // insert into reviews table
   $conn->query("
     INSERT INTO reviews (movie_id, rating, review)
-    VALUES ($movie_id, $rate, '$text')
+    VALUES ($submittedMovieId, $submittedRating, '$submittedReviewText')
   ");
 }
 ?>
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </nav>
 
-  <!-- page haeder -->
+  <!-- page header -->
   <header class="page-header">
     <h2>Review Processed!</h2>
   </header>
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="about-text">
         <p>Your review has been added.</p>
         <p>
-          <a href="movie.php?id=<?php echo htmlentities($movie_id); ?>">
+          <a href="movie.php?id=<?php echo htmlentities($submittedMovieId); ?>">
             Back to Movie Details
           </a>
         </p>

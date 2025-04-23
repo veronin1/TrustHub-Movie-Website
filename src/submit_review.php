@@ -2,10 +2,10 @@
 require 'database_connect.php';
 
 // pre-select ?id if given
-$default_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$defaultMovieId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // get list of all movies for the dropdown
-$list = $conn->query("SELECT id, title FROM movies ORDER BY title");
+$moviesList = $conn->query("SELECT id, title FROM movies ORDER BY title");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,10 +52,10 @@ $list = $conn->query("SELECT id, title FROM movies ORDER BY title");
         <label for="movie_id">Movie:</label>
         <select name="movie_id" id="movie_id" required>
           <option value="">-- choose a movie --</option>
-          <?php while ($m = $list->fetch_assoc()): ?>
-            <option value="<?php echo $m['id']; ?>"
-              <?php if ($m['id']==$default_id) echo 'selected'; ?>>
-              <?php echo htmlspecialchars($m['title']); ?>
+          <?php while ($movie = $moviesList->fetch_assoc()): ?>
+            <option value="<?php echo $movie['id']; ?>"
+              <?php if ($movie['id'] == $defaultMovieId) echo 'selected'; ?>>
+              <?php echo htmlspecialchars($movie['title']); ?>
             </option>
           <?php endwhile; ?>
         </select>
