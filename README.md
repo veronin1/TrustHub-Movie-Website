@@ -25,9 +25,6 @@ images/
   --> logo.jpg                 # Used in the navigation bar, all pages
   --> thank_you.png            # After a user submits a review, thank you image appears.
 ```
-
-![Homepage Screenshot](examples_and_images/homepage.png "Homepage Screenshot")
-
 ---
 
 ## 2. Meeting the Brief
