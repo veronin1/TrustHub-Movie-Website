@@ -56,9 +56,8 @@ The website meets the key requirements by:
 
 5. **Security & best practice** (LO3):
    - Using `$_GET['id']` to `(int)` prevents SQL injection via URL parameters.
-   - All user input in `$_POST` is secured with `real_escape_string()` before insertion. real_escape_string() is used to "escape" special characters in a string for safe use in SQL queries, preventing SQL injection.
-   - Adding backslashes before characters like single quotes ('), double quotes ("), backslashes (\), and others.
-   - `htmlspecialchars()` is used to prevent XSS attacks by removing special HTML characters, converting them into their HTML equivalents so they are rendered as text rather than executed as code. Converting characters like <, >, &, ", and ' into safe entities (e.g., &lt;, &gt;, &amp;, &quot;, &#39;).
+   - All user input in `$_POST` is secured with `real_escape_string()` before insertion. real_escape_string() is used to "escape" special characters in a string for safe use in SQL queries, preventing SQL injection. Adding backslashes before characters like single quotes ('), double quotes ("), backslashes (\), and others.
+   - `htmlspecialchars()` is used to prevent XSS (cross-site scripting) attacks by removing special HTML characters, converting them into their HTML equivalents so they are rendered as text rather than executed as code. Converting characters like <, >, &, ", and ' into safe entities (e.g., &lt;, &gt;, &amp;, &quot;, &#39;).
    - `nl2br()` preserves line breaks in the user's input by converting newline characters (\n) into HTML <br> tags, ensuring text formatting is maintained.
 
 ---
