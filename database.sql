@@ -1,17 +1,24 @@
-CREATE DATABASE trusthub;
+-- Create the TrustHub database and tables
+CREATE DATABASE IF NOT EXISTS trusthub;
 USE trusthub;
 
-CREATE TABLE movies (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    year YEAR,
-    genre VARCHAR(50)
+CREATE TABLE IF NOT EXISTS movies (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  year YEAR,
+  genre VARCHAR(50)
 );
 
-CREATE TABLE reviews (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    movie_id INT NOT NULL,
-    rating INT NOT NULL,
-    review TEXT NOT NULL,
-    FOREIGN KEY (movie_id) REFERENCES movies(id)
+CREATE TABLE IF NOT EXISTS reviews (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  movie_id INT NOT NULL,
+  rating INT NOT NULL,
+  review TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (movie_id) REFERENCES movies(id)
 );
+
+USE trusthub;
+
+ALTER TABLE reviews
+  ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;

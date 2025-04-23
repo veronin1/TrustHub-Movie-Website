@@ -1,0 +1,87 @@
+/*ABOUT SECTION*/
+.about-section {
+  display: flex;
+  align-items: stretch;
+  max-width: 1000px;
+  margin: 40px auto;
+  gap: 20px;
+}
+.about-text,
+.about-img {
+  flex: 1;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  padding: 20px;
+}
+.about-text h3 {
+  color: #f5c518;
+  margin-bottom: 10px;
+}
+.about-text p {
+  color: #ccc;
+}
+.about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* stack the about section on smaller (mobile) screens */
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+  }
+}
+
+/* FEATURED MOVIES SECTION */
+.featured-section {
+  max-width: 1200px;
+  margin: 60px auto 20px;
+  padding: 0 20px;
+  text-align: center;
+}
+.featured-section h4 {
+  font-size: 1.4rem;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+}
+
+/* 2 rows × 6 columns grid */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+.movie-card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+}
+.movie-card h5 {
+  color: #f5c518;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+.movie-card .year {
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+.movie-card .details-link {
+  color: #e0e0e0;
+  font-size: 0.85rem;
+}
+.movie-card .details-link:hover {
+  text-decoration: underline;
+}
+
+/* Stack grid into 2 columns on mobile */
+@media (max-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
