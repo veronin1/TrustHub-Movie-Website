@@ -1,6 +1,6 @@
 # TrustHub Movie Reviews Website
 
-This README explains how the TrustHub Movie Reviews codebase meets the assignment brief requirements.
+Explanation of how the TrustHub Movie Reviews site meets the assignment brief requirements.
 
 ---
 
