@@ -8,24 +8,25 @@ Explanation of how the TrustHub Movie Reviews site meets the assignment brief re
 
 ```
 trusthub/
-  src/
-    --> database.sql             # SQL schema for `movies` and `reviews` tables
-    --> database_connect.php     # MySQLi connection script
-    --> index.php                # Homepage, also shows featured movies
-    --> movies.php               # Script for browsing all movies in the database
-    --> movie.php                # Script for showing singular movie details & reviews
-    --> submit_review.php        # Review submission form
-    --> process_review.php       # Script for user review POST and insertion into database
-  styles/
-    --> global.css               # Global styling (navbar, footer, header, font, etc)
-    --> homepage.css             # Homepage-specific styling (about section, movie cards, etc)
-    --> movies.css               # Movies listing styling (movie cards, movie grid)
-    --> review.css               # Review page styleing (form styling)
-  images/
-    --> cinema_popcorn.jpg       # About us homepage image
-    --> logo.jpg                 # Used in the navigation bar, all pages
-    --> thank_you.png            # After a user submits a review, thank you image appears.
+  --> database.sql             # SQL schema for `movies` and `reviews` tables
+  --> database_connect.php     # MySQLi connection script
+  --> index.php                # Homepage, also shows featured movies
+  --> movies.php               # Script for browsing all movies in the database
+  --> movie.php                # Script for showing singular movie details & reviews
+  --> submit_review.php        # Review submission form
+  --> process_review.php       # Script for user review POST and insertion into database
+css/
+  --> global.css               # Global styling (navbar, footer, header, font, etc)
+  --> homepage.css             # Homepage-specific styling (about section, movie cards, etc)
+  --> movies.css               # Movies listing styling (movie cards, movie grid)
+  --> review.css               # Review page styleing (form styling)
+images/
+  --> cinema_popcorn.jpg       # About us homepage image
+  --> logo.jpg                 # Used in the navigation bar, all pages
+  --> thank_you.png            # After a user submits a review, thank you image appears.
 ```
+
+![alt text]("examples and images/image.png")
 
 ---
 
@@ -47,7 +48,7 @@ The website meets the key requirements by:
 3. **Form handling & CRUD operations** (LO3):
    - Users select and submit ratings (1–5) and review text via `submit_review.php`.
    - `process_review.php` reads `$_POST`, escapes input with real_escape_string(), then inserts the review into the database.
-   - Reviews are displayed on `movie.php`, allowing for the viewing and adding of data.
+   - Reviews are displayed on `movie.php`, satisfying the consumption and creation of data.
 
 4. **Front-end layout & responsiveness** (LO2, LO3):
    - Separate CSS files to mimic "medium fidelity designs" (front-end) - (grid layouts, card styles, responsive breakpoints).
